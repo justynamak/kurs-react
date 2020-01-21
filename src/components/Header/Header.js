@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 
-class App extends Component {
+class Header extends Component {
   render() {
     return (
       <div>
-        <i>Hello world</i>
+        <h1>Header</h1>
       </div>
     );
   }
 }
-export default App;
+export default Header;
