@@ -1,0 +1,22 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+.app {
+  background-color: lightgray;
+  min-height: 100vh;
+}
+.header {
+  background-color: brown;
+}
+.order {
+  background-color: darkgray;
+}
+.inventory {
+  background-color: green;
+}
+.admin-panel {
+  background-color: tan;
+  padding: 10px;
+}
