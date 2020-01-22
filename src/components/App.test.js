@@ -13,9 +13,11 @@ describe("Tests rendered", () => {
     ReactDOM.render(<App />, div);
     ReactDOM.unmountComponentAtNode(div);
   });
-  it("Hello world rendered", () => {
+  it("Child components rendered", () => {
     const wrapper = shallow(<App />);
-
-    expect(wrapper.find("i").text()).toBe("Hello world");
+    expect(wrapper.find("Header").exists()).toBe(true);
+    expect(wrapper.find("Inventory").exists()).toBe(true);
+    expect(wrapper.find("Order").exists()).toBe(true);
+    expect(wrapper.find("AdminPanel").exists()).toBe(true);
   });
 });
