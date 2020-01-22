@@ -12,9 +12,8 @@ describe("AdminPanel rendered", () => {
     ReactDOM.render(<AdminPanel />, div);
     ReactDOM.unmountComponentAtNode(div);
   });
-  it("AdminPanel rendered", () => {
+  it("Snapshot matches", () => {
     const wrapper = shallow(<AdminPanel />);
-
-    expect(wrapper.find("div").text()).toBe("Panel administratora");
+    expect(wrapper).toMatchSnapshot();
   });
 });

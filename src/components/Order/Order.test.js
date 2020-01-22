@@ -12,9 +12,9 @@ describe("Tests rendered", () => {
     ReactDOM.render(<Order />, div);
     ReactDOM.unmountComponentAtNode(div);
   });
-  it("Hello world rendered", () => {
-    const wrapper = shallow(<Order />);
 
-    expect(wrapper.find("div").text()).toBe("Order");
+  it("Snapshot matches", () => {
+    const wrapper = shallow(<Order />);
+    expect(wrapper).toMatchSnapshot();
   });
 });
