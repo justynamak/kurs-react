@@ -7,27 +7,38 @@ import "../index.css";
 
 class App extends Component {
   state = {
-    books: []
+    // books: [],
+    order: []
   };
 
-  addBook = book => {
-    const books = [...this.state.books];
+  // addBook = book => {
+  //   const books = [...this.state.books];
+  //   books.push(book);
 
-    books.push(book);
-
+  //   this.setState({
+  //     books
+  //   });
+  // };
+  addToOrder = book => {
+    const order = [...this.state.order, book];
     this.setState({
-      books
+      order
+    });
+  };
+  removeFromOrder = title => {
+    const order = this.state.order.filter(book => book.name !== title);
+    this.setState({
+      order
     });
   };
   render() {
-    const { books } = this.state;
+    // const { books, order } = this.state;
     return (
       <div className="app container">
         <Header />
         <div className="row">
-          <Order />
-          <Inventory books={books} />
-          <AdminPanel addBook={this.addBook} />
+          {/* <Order removeFromOrder={this.removeFromOrder} order={order} />
+          <Inventory books={books} addToOrder={this.addToOrder} /> */}
         </div>
       </div>
     );

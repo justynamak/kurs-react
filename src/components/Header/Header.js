@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class Header extends Component {
   constructor() {
@@ -38,6 +39,7 @@ class Header extends Component {
     return (
       <header className="row header" style={style} onClick={this.handleClick}>
         <h1 className="text-center w-100">{this.state.bookStoreName}</h1>
+        <Link to="/admin-panel">Admin panel</Link>
       </header>
     );
   }

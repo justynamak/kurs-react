@@ -6,9 +6,13 @@ export default class BookView extends Component {
     return (
       <li className="d-flex justify-content-between text-left">
         <p>{name}</p>
+        <p>{author}</p>
         <p>{description}</p>
         <p>{onStock}</p>
         <img src={image} height="75" alt={name} />
+        <button onClick={() => this.props.addToOrder(this.props.book)}>
+          Add
+        </button>
       </li>
     );
   }

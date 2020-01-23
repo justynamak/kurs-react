@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import { fbase } from "../../fbase";
 
 class AdminPanel extends Component {
   state = {
+    books: [],
     book: {
       name: "",
       author: "",
@@ -34,9 +36,13 @@ class AdminPanel extends Component {
 
     const newBook = { ...this.state.book };
 
-    this.props.addBook(newBook);
-
+    // this.props.addBook(newBook);
+    console.log([newBook]);
     this.setState({
+      books: Array.isArray(this.state.books)
+        ? [...this.state.books, newBook]
+        : [newBook],
+
       book: {
         name: "",
         author: "",
@@ -46,6 +52,15 @@ class AdminPanel extends Component {
       }
     });
   };
+  componentDidMount() {
+    this.ref = fbase.syncState("bookstore/books", {
+      context: this,
+      state: "books"
+    });
+  }
+  componentWillUnmount() {
+    fbase.removeBinding(this.ref);
+  }
   render() {
     return (
       <div className="admin-panel col-md-3">
