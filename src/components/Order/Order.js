@@ -11,7 +11,8 @@ class Order extends Component {
       />
     ));
     return (
-      <div className="order col-md-3">
+      <div className="order col-md-5">
+        <h2 className="text-center mb-2">Your order</h2>
         {order.length ? <ul>{order}</ul> : null}
       </div>
     );
