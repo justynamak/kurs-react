@@ -1,128 +1,28 @@
 import React, { Component } from "react";
-import { fbase } from "../../fbase";
+import LoginForm from "../Forms/LoginForm";
+import BookForm from "../Forms/BookForm";
 
 class AdminPanel extends Component {
   state = {
-    books: [],
-    book: {
-      name: "",
-      author: "",
-      description: "",
-      onStock: true,
-      image: ""
-    }
+    loggedIn: false
   };
-  onHandleChangeInput = e => {
-    let book;
 
-    if (e.target.name === "onStock") {
-      book = {
-        ...this.state.book,
-        [e.target.name]: e.target.checked
-      };
-    } else {
-      book = {
-        ...this.state.book,
-        [e.target.name]: e.target.value
-      };
-    }
-
+  changeLoggedIn = val => {
     this.setState({
-      book
+      loggedIn: val
     });
   };
-  handleAddNewBook = e => {
-    e.preventDefault();
 
-    const newBook = { ...this.state.book };
-
-    // this.props.addBook(newBook);
-    console.log([newBook]);
-    this.setState({
-      books: Array.isArray(this.state.books)
-        ? [...this.state.books, newBook]
-        : [newBook],
-
-      book: {
-        name: "",
-        author: "",
-        description: "",
-        onStock: true,
-        image: ""
-      }
-    });
-  };
-  componentDidMount() {
-    this.ref = fbase.syncState("bookstore/books", {
-      context: this,
-      state: "books"
-    });
-  }
-  componentWillUnmount() {
-    fbase.removeBinding(this.ref);
-  }
   render() {
     return (
-      <div className="admin-panel col-md-3">
-        <form onSubmit={this.handleAddNewBook}>
-          <div className="form-group">
-            <input
-              type="text"
-              placeholder="name"
-              name="name"
-              className="form-control"
-              id="bookName"
-              value={this.state.book.name}
-              onChange={this.onHandleChangeInput}
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="text"
-              placeholder="author"
-              id="author"
-              name="author"
-              className="form-control"
-              value={this.state.book.author}
-              onChange={this.onHandleChangeInput}
-            />
-          </div>
-          <div className="form-group">
-            <textarea
-              name="description"
-              id="description"
-              placeholder="description"
-              className="form-control"
-              value={this.state.book.description}
-              onChange={this.onHandleChangeInput}
-            ></textarea>
-          </div>
-          <div className="form-group form-check">
-            <input
-              type="checkbox"
-              className="form-check-input"
-              id="onStock"
-              name="onStock"
-              value={this.state.book.onStock}
-              onChange={this.onHandleChangeInput}
-            />
-            <label htmlFor="onStock" className="form-check-label">
-              On stock
-            </label>
-          </div>
-          <div className="form-group">
-            <input
-              type="text"
-              placeholder="image path"
-              id="image"
-              name="image"
-              className="form-control"
-              value={this.state.book.image}
-              onChange={this.onHandleChangeInput}
-            />
-          </div>
-          <button className="btn btn-primary">Send</button>
-        </form>
+      <div className="container">
+        {!this.state.loggedIn && (
+          <LoginForm changeLoggedIn={this.changeLoggedIn} />
+        )}
+
+        {this.state.loggedIn && (
+          <BookForm changeLoggedIn={this.changeLoggedIn} />
+        )}
       </div>
     );
   }
