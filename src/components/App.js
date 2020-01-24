@@ -3,22 +3,14 @@ import AdminPanel from "./AdminPanel/AdminPanel";
 import Order from "./Order/Order";
 import Header from "./Header/Header";
 import Inventory from "./Inventory/Inventory";
+import Footer from "./Footer/Footer";
 import "../index.css";
 
 class App extends Component {
   state = {
-    // books: [],
     order: []
   };
 
-  // addBook = book => {
-  //   const books = [...this.state.books];
-  //   books.push(book);
-
-  //   this.setState({
-  //     books
-  //   });
-  // };
   addToOrder = book => {
     const order = [...this.state.order, book];
     this.setState({
@@ -32,14 +24,17 @@ class App extends Component {
     });
   };
   render() {
-    // const { books, order } = this.state;
+    const { order } = this.state;
     return (
-      <div className="app container">
+      <div className="app">
         <Header />
-        <div className="row">
-          {/* <Order removeFromOrder={this.removeFromOrder} order={order} />
-          <Inventory books={books} addToOrder={this.addToOrder} /> */}
+        <div className="mx-5">
+          <div className="row mt-5 mb-2">
+            <Order removeFromOrder={this.removeFromOrder} order={order} />
+            <Inventory addToOrder={this.addToOrder} />
+          </div>
         </div>
+        <Footer />
       </div>
     );
   }
