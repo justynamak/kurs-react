@@ -37,9 +37,13 @@ class Header extends Component {
       color: textColor
     };
     return (
-      <header className="row header" style={style} onClick={this.handleClick}>
-        <h1 className="text-center w-100">{this.state.bookStoreName}</h1>
-        <Link to="/admin-panel">Admin panel</Link>
+      <header className="header row" style={style} onClick={this.handleClick}>
+        <div className="container">
+          <h1 className="text-center w-100 py-3">{this.state.bookStoreName}</h1>
+          <Link to="/admin-panel" className="text-light text-right">
+            Admin panel
+          </Link>
+        </div>
       </header>
     );
   }
